@@ -1,0 +1,179 @@
+// === Load existing data or use empty structure ===
+let storeData = JSON.parse(localStorage.getItem('storeData')) || {
+  top: [],
+  bottom: [],
+  shoe: [],
+};
+
+let currentPage = 'home';
+let currentDetailId = null;
+
+// === Utility Functions ===
+function generateId() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function saveData() {
+  localStorage.setItem('storeData', JSON.stringify(storeData));
+}
+
+// === Render Pages ===
+function renderHome() {
+  return `
+    <h2>Welcome to the Clothing Store</h2>
+    <p style="text-align:center; font-size: 20px; max-width: 600px; margin: 0 auto;">
+      Select a category to browse clothes or add new items.
+    </p>
+  `;
+}
+
+function renderItemsPage(category) {
+  const items = storeData[category];
+  if (items.length === 0) {
+    return `<h2>${capitalize(category)}s</h2><p style="text-align:center;">No items yet. Add some in the ADD tab!</p>`;
+  }
+  const imgs = items.map(item => `
+    <img src="${item.image}" alt="${item.name}" data-id="${item.id}" />
+  `).join('');
+  return `
+    <h2>${capitalize(category)}s</h2>
+    <div class="items-grid">${imgs}</div>
+  `;
+}
+
+function renderDetailPage(category, id) {
+  const item = storeData[category].find(i => i.id === id);
+  if (!item) return `<p>Item not found.</p>`;
+  return `
+    <div class="detail-container">
+      <h2>${item.name}</h2>
+      <img src="${item.image}" alt="${item.name}" />
+      <p class="price">Price: $${item.price}</p>
+      <p><a href="${item.link}" target="_blank" rel="noopener">Buy here</a></p>
+      <button id="backBtn">Back</button>
+      <button id="deleteBtn" style="background-color: #dc3545; margin-left: 10px;">Delete</button>
+    </div>
+  `;
+}
+
+function renderAddPage() {
+  return `
+    <h2>Add New Item</h2>
+    <form id="addItemForm">
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" required>
+          <option value="">Select category</option>
+          <option value="top">Top</option>
+          <option value="bottom">Bottom</option>
+          <option value="shoe">Shoe+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg" required />
+      </div>
+      <div class="form-group">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" placeholder="T-Shirt" required />
+      </div>
+      <div class="form-group">
+        <label for="price">Price (USD):</label>
+        <input type="number" id="price" min="0" step="0.01" placeholder="19.99" required />
+      </div>
+      <div class="form-group">
+        <label for="link">Purchase Link:</label>
+        <input type="url" id="link" placeholder="https://example.com/buy" required />
+      </div>
+      <button type="submit">Add Item</button>
+    </form>
+  `;
+}
+
+// === Load Page ===
+function loadPage(page, detailId = null) {
+  currentPage = page;
+  currentDetailId = detailId;
+  const content = document.getElementById('content');
+
+  if (page === 'home') {
+    content.innerHTML = renderHome();
+  } else if (page === 'add') {
+    content.innerHTML = renderAddPage();
+    document.getElementById('addItemForm').addEventListener('submit', e => {
+      e.preventDefault();
+      addItem();
+    });
+  } else if (['top', 'bottom', 'shoe'].includes(page)) {
+    if (detailId) {
+      content.innerHTML = renderDetailPage(page, detailId);
+      document.getElementById('backBtn').addEventListener('click', () => {
+        loadPage(page);
+      });
+      document.getElementById('deleteBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete this item?')) {
+          deleteItem(page, detailId);
+          loadPage(page);
+        }
+      });
+    } else {
+      content.innerHTML = renderItemsPage(page);
+      document.querySelectorAll('.items-grid img').forEach(img => {
+        img.addEventListener('click', () => {
+          const id = img.getAttribute('data-id');
+          loadPage(page, id);
+        });
+      });
+    }
+  }
+}
+
+// === Add Item ===
+function addItem() {
+  const category = document.getElementById('category').value;
+  const image = document.getElementById('imageUrl').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const price = parseFloat(document.getElementById('price').value);
+  const link = document.getElementById('link').value.trim();
+
+  if (!category || !image || !name || isNaN(price) || !link) {
+    alert('Please fill all fields correctly.');
+    return;
+  }
+
+  const newItem = {
+    id: generateId(),
+    image,
+    name,
+    price: price.toFixed(2),
+    link,
+  };
+
+  storeData[category].push(newItem);
+  saveData(); // Save to localStorage
+
+  alert(`Added new item to ${capitalize(category)} category!`);
+  document.getElementById('addItemForm').reset();
+}
+
+// === Delete Item ===
+function deleteItem(category, id) {
+  storeData[category] = storeData[category].filter(item => item.id !== id);
+  saveData(); // Update localStorage
+}
+
+// === Navigation Setup ===
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const page = link.getAttribute('data-page');
+    loadPage(page);
+  });
+});
+
+// === Initial Load ===
+loadPage('home');
