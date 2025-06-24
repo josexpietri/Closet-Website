@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Add</h1>
+    <nav>
+      <a href="/index.html" data-page="home">HOME</a>
+      <a href="/ADD/Top/index.html" data-page="Tops">TOPS</a>
+      <a href="/ADD/Bottom/index.html" data-page="Bottom">BOTTOMS</a>
+      <a href="/ADD/Shoes+/index.html" data-page="shoe">SHOE+</a>
+      <a href="/ADD/add.html" data-page="Sadd">ADD</a>
+    </nav>
+  </header>
+
+  <main id="content"></main>
+
+<form id="addItemForm">
+  <div class="form-group">
+    <label for="itemName">Name</label>
+    <input type="text" id="itemName" required />
+  </div>
+
+  <div class="form-group">
+    <label for="itemPrice">Price</label>
+    <input type="number" id="itemPrice" required />
+  </div>
+
+  <div class="form-group">
+    <label for="itemLink">Product Link</label>
+    <input type="url" id="itemLink" required />
+  </div>
+
+  <div class="form-group">
+    <label for="itemImage">Image URL</label>
+    <input type="url" id="itemImage" required />
+  </div>
+
+  <!-- ✅ New Category Section -->
+  <div class="form-group">
+    <label for="itemCategory">Category</label>
+    <select id="itemCategory" required>
+      <option value="">Select Category</option>
+      <option value="Top">Top</option>
+      <option value="Bottom">Bottom</option>
+      <option value="Shoe">Shoe</option>
+    </select>
+  </div>
+
+  <button type="submit">Add Item</button>
+</form>
+
+
+  <script src="add.js"></script>
+  <script src="Top/top.js"></script>
+  <script src="Shoes+/shoes.js"></script>
+  
+</body>
+</html>

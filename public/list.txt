@@ -1,0 +1,23 @@
+clear the local storage 
+make sure all the 3 are functioning 
+add accessories tab 
+
+
+Deploy the website with a database
+
+
+> upgrades : 
+make homepage 
+	> just load all the clothing items and have the page cycle through them 
+make inspect page which adds more images 
+	> includes a delete and edit feature 
+make users 
+make the add page universal 
+split up the categories more 
+	> accessories
+	> outerwear
+	> shorts
+add a closet 
+	> users can enter outfit inspo 
+
+
