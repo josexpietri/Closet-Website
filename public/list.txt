@@ -1,7 +1,6 @@
-clear the local storage 
-make sure all the 3 are functioning 
+make the delete and edit button work 
+fix all the other tabs 
 add accessories tab 
-
 
 Deploy the website with a database
 

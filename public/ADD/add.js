@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 pushShoe(itemData);
             }
 
+          document.getElementById("myItemForm").reset();
+
         } else {
           alert("Please fill in all fields.");
         }

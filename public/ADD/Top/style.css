@@ -56,6 +56,7 @@ nav a:hover {
   width: 250px; /* ✅ now this makes items align horizontally */
   text-align: center;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 
@@ -74,7 +75,7 @@ nav a:hover {
   text-align: left;
   margin: 12px;
   font-size: 15px;
-  color: black;
+  color: #2f4f4f;
   line-height: .5;
 }
 
@@ -82,8 +83,54 @@ nav a:hover {
   font-size: 14px;
   text-align: left;
   margin: 12px;
-  color: black;
+  color: #2f4f4f;
   line-height: .5;
+}
+
+/* Edit buttons*/
+.actions button{
+  border : none;
+  size: 20px;
+  background-color: rgba(255, 255, 255, .0);
+  color: #2f4f4f;
+  margin: 0 0 1rem 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: absolute;
+}
+.actions .options-btn{
+  position: absolute;
+  top:8px;
+  right: 10px;
+}
+
+/* Hide by default */
+.actions .delete-btn,
+.actions .edit-btn {
+  display: none;
+  position: absolute; /* required for top/right to work */
+  width: 50px;         /* same width */
+  height: 20px;        /* same height */
+  font-size: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+/* Specific positions */
+.product-card .delete-btn {
+  top: 10px;
+}
+
+.product-card .edit-btn {
+  top: 30px; /* slightly lower so it doesn't overlap delete */
+}
+
+.product-card .edit-btn:hover,
+.product-card .delete-btn:hover {
+  cursor: pointer;
+  color: red;
+  text-align: center;
+  cursor: pointer;
+
 }
 
 /* === FORM STYLING (optional, for add.html too) === */
@@ -114,16 +161,3 @@ input, select {
 }
 
 /* === BUTTONS (shared) === */
-button {
-  margin: 1rem 0;
-  padding: 0.6rem 1.2rem;
-  background-color: #2f4f4f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #1e2f2f;
-}
