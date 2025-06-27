@@ -25,7 +25,12 @@ nav {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
+  gap: 17px;
+  flex-wrap: wrap;
+  font-size: 15px;
 }
+
+
 
 nav a {
   text-decoration: none;
@@ -161,3 +166,5 @@ input, select {
 }
 
 /* === BUTTONS (shared) === */
+
+

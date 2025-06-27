@@ -1,18 +1,30 @@
 let allTops = getTops();
 const topsContainer = document.getElementById("tops-container");
 
+// Edit/Delete button UI interaction 
 document.addEventListener("DOMContentLoaded", () => {
+
+  let currentTopElement = null; // Store the currently hovered "top" item
+
   const showControls = (actions) => {
     actions.querySelector(".delete-btn").style.display = "inline-block";
     actions.querySelector(".edit-btn").style.display = "inline-block";
     actions.querySelector(".options-btn").style.display = "inline-block";
+
   };
 
   const hideControls = (actions) => {
-    actions.querySelector(".delete-btn").style.display = "none";
-    actions.querySelector(".edit-btn").style.display = "none";
-    actions.querySelector(".options-btn").style.display = "inline-block";
-  };
+  if (!actions) return; // Safely do nothing if null
+
+  const deleteBtn = actions.querySelector(".delete-btn");
+  const editBtn = actions.querySelector(".edit-btn");
+  const optionsBtn = actions.querySelector(".options-btn");
+
+  if (deleteBtn) deleteBtn.style.display = "none";
+  if (editBtn) editBtn.style.display = "none";
+  if (optionsBtn) optionsBtn.style.display = "inline-block";
+};
+
 
   const hideOptions = (actions) => {
     actions.querySelector(".options-btn").style.display = "none";
@@ -21,6 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("mouseover", (e) => {
     const actions = e.target.closest(".actions");
     if (!actions) return;
+
+    const topElement = actions.closest(".product-card"); 
+  if (topElement) {
+    currentTopElement = topElement; // Store for later use
+  }
 
     if (
       e.target.classList.contains("options-btn") ||
@@ -39,37 +56,46 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.body.addEventListener("mouseout", (e) => {
-    const related = e.relatedTarget;
-    const actions = e.target.closest(".actions");
+  const related = e.relatedTarget;
+  const actions = e.target.closest(".actions");
 
-    if (!actions || !related || !actions.contains(related)) {
-      hideControls(actions);
-    } else if (
-      e.target.classList.contains("edit-btn") ||
-      e.target.classList.contains("delete-btn")
-    ) {
-      actions.querySelector(".options-btn").style.display = "inline-block";
-    }
-  });
+  // Call hideControls only if needed, and safely
+  if (!actions || !related || !actions.contains(related)) {
+    hideControls(actions); // No error now, even if `actions` is null
+  } else if (
+    e.target.classList.contains("edit-btn") ||
+    e.target.classList.contains("delete-btn")
+  ) {
+    const optionsBtn = actions?.querySelector(".options-btn");
+    if (optionsBtn) optionsBtn.style.display = "inline-block";
+  }
 });
 
 
+ document.body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("edit-btn")) {
+    if (currentTopElement) editTop(currentTopElement);
+  } else if (e.target.classList.contains("delete-btn")) {
+    if (currentTopElement) deleteTop(currentTopElement);
+  }
+});
 
 
+});
+
+//load in the storage s
  if (topsContainer) {
       updateTops(topsContainer, allTops);
-   }
+  }
    
+
   function pushTops(itemData){
-    let allTops = getTops();
-    console.log("PUSHING");
     allTops.push(itemData);
     saveTops(allTops);
     updateTops();
   }
   
   function updateTops(container, allTops) {
-    console.log("PUSHING3");
     container.innerHTML = "";
     allTops.forEach((top, index) => {
       const el = createNewTop(top.image, top.name, top.price, top.link, index);
@@ -80,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createNewTop(image, name, price, link, idIndex) {
     const div = document.createElement("div");
     div.className = "product-card";
+    div.dataset.id = idIndex; 
     div.innerHTML = `
       <a href="${link}" target="_blank">
       <img src="${image}" alt="Top ${idIndex}" />
@@ -99,12 +126,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return div;
   }
   
-  function getTops() {
-    return JSON.parse(localStorage.getItem("allTops") || "[]");
+function getTops() {
+  const data = localStorage.getItem("allTops");
+  if (!data || data === "undefined") return [];
+  try {
+    return JSON.parse(data);
+  } catch {
+    return [];
   }
+}
   
   function saveTops(allTops) {
-    console.log("PUSHING2");
     localStorage.setItem("allTops", JSON.stringify(allTops));
   }
   
+  function editTop(topElement) {
+  const id = topElement.dataset.id;
+  
+}
+
+function deleteTop(topElement) {
+  const id = parseInt(topElement.dataset.id);
+  console.log("Deleting top with ID:", id);
+
+  allTops = allTops.filter((_, i) => i !== id);
+  saveTops(allTops);  // <-- MUST pass allTops here
+  updateTops(topsContainer, allTops);
+}
+
+

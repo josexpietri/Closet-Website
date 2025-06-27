@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form) {
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        console.log("Getting Data");
         const itemData = {
           name: document.getElementById("itemName").value.trim(),
           price: parseFloat(document.getElementById("itemPrice").value),
@@ -12,20 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
           image: document.getElementById("itemImage").value.trim(),
           category: document.getElementById("itemCategory").value.trim()
         };
-         console.log(itemData.category);
-        if (itemData.name && itemData.price && itemData.link && itemData.image) {
+
+        if (itemData.category && itemData.name && itemData.price && itemData.link && itemData.image) {
            
             if(itemData.category == "Top"){
-                 console.log("Top Push");
                 pushTops(itemData);
             }else if(itemData.category == "Bottom"){
 
             }else if(itemData.category == "Shoe"){
-                console.log("Shoe Push");
                 pushShoe(itemData);
             }
 
-          document.getElementById("myItemForm").reset();
+          form.reset();
 
         } else {
           alert("Please fill in all fields.");
