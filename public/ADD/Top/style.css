@@ -11,13 +11,7 @@ header {
   background-color: #f0f0f0;
   padding: 1rem 0;
   text-align: center;
-}
-
-h1 {
-  font-size: 3rem;
-  color: #2f4f4f;
-  margin: 0 0 1rem 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: relative;
 }
 
 nav {
@@ -25,22 +19,63 @@ nav {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-  gap: 17px;
-  flex-wrap: wrap;
-  font-size: 15px;
+
+  font-family: 'Scto Grotesk A';
+  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
-
-
 
 nav a {
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  color: black;
+  font-size: 15px;
 }
 
-nav a:hover {
-  color: #007b7f;
+nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover {
+  transform: scale(1.1);
 }
+
+.tabs-container a[data-page="Tops"] {
+  /* your styles here */
+  color: black;
+  border-bottom: 2px solid currentColor;
+}
+
+nav.tabs-container a[href="/ADD/add.html"]:last-of-type {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  
+  font-weight: bold;
+  font-size: 25px;
+}
+nav.tabs-container a[href="/ADD/add.html"]:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* target the HOME link */
+nav.tabs-container a[href="/index.html"] {
+  position: absolute;
+  top: 50%;                   /* vertical center of the header */
+  left: 2rem;                 /* distance from the left edge */
+  transform: translateY(-50%);
+  
+  font-weight: bold;
+  /* match whatever font-size you’re using elsewhere */
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  /* optional: set transform-origin if you’ll scale it */
+  transform-origin: center;
+}
+
+/* keep it in place when you hover */
+nav.tabs-container a[href="/index.html"]:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+
 
 /* === GRID CONTAINER === */
 .items-grid {
@@ -168,3 +203,74 @@ input, select {
 /* === BUTTONS (shared) === */
 
 
+
+/* === MODAL / POPUP === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #2f4f4f;
+}
+
+.modal p {
+  color: #2f4f4f;
+  font-size: 14px;
+}
+
+.modal .modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal .button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007b7f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.modal .button:hover {
+  background-color: #005f61;
+}
+
+.modal .button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.modal .button.cancel:hover {
+  background-color: #aaa;
+}
+
+/* === UTILITIES === */
+.hidden {
+  display: none !important;
+}

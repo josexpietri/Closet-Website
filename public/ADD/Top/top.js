@@ -145,13 +145,26 @@ function getTops() {
   
 }
 
-function deleteTop(topElement) {
-  const id = parseInt(topElement.dataset.id);
-  console.log("Deleting top with ID:", id);
+let pendingDeleteId = null;
 
-  allTops = allTops.filter((_, i) => i !== id);
-  saveTops(allTops);  // <-- MUST pass allTops here
+function deleteTop(topElement) {
+  pendingDeleteId = parseInt(topElement.dataset.id);
+  document.getElementById("confirmModal").classList.remove("hidden");
+}
+
+function closeModal() {
+  pendingDeleteId = null;
+  document.getElementById("confirmModal").classList.add("hidden");
+}
+
+function confirmDelete() {
+  if (pendingDeleteId === null) return;
+
+  allTops = allTops.filter((_, i) => i !== pendingDeleteId);
+  saveTops(allTops);
   updateTops(topsContainer, allTops);
+
+  closeModal();
 }
 
 
