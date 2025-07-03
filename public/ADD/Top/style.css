@@ -1,14 +1,23 @@
 /* === GLOBAL STYLES === */
 body {
-  font-family: monospace;
+  font-family: 'Scto Grotesk A';
+  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+
   margin: 0;
   padding: 0;
-  background-color: #fff;
-}
 
+  background: url('TopBack.jpg') no-repeat center/cover;
+  background-image: url('TopBack.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; 
+}
 /* === HEADER & NAV === */
 header {
-  background-color: #f0f0f0;
+  
   padding: 1rem 0;
   text-align: center;
   position: relative;
@@ -19,17 +28,13 @@ nav {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-
-  font-family: 'Scto Grotesk A';
-  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
 }
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: 15px;
+  color: white;
 }
 
 nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover {
@@ -38,7 +43,6 @@ nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover
 
 .tabs-container a[data-page="Tops"] {
   /* your styles here */
-  color: black;
   border-bottom: 2px solid currentColor;
 }
 
@@ -81,8 +85,8 @@ nav.tabs-container a[href="/index.html"]:hover {
 .items-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  padding: 2rem;
+  gap: 7px;
+  padding: 1.7rem;
   justify-content: flex-start; /* aligns items from the left */
 }
 
@@ -93,7 +97,7 @@ nav.tabs-container a[href="/index.html"]:hover {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 250px; /* ✅ now this makes items align horizontally */
+  width: 320px; /* this makes items align horizontally */
   text-align: center;
   transition: transform 0.3s ease;
   position: relative;
@@ -106,24 +110,18 @@ nav.tabs-container a[href="/index.html"]:hover {
 
 .product-card img {
   width: 100%;
-  height: 300px;
+  height: 370px;
   object-fit: cover;
-  border-bottom: 1px solid #ffffffad;
-}
 
-.product-card h3 {
-  text-align: left;
-  margin: 12px;
-  font-size: 15px;
-  color: #2f4f4f;
-  line-height: .5;
+  /*check once there is more than 1 row */
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
 
 .product-card p {
   font-size: 14px;
   text-align: left;
   margin: 12px;
-  color: #2f4f4f;
+  color: #000000;
   line-height: .5;
 }
 
@@ -132,79 +130,48 @@ nav.tabs-container a[href="/index.html"]:hover {
   border : none;
   size: 20px;
   background-color: rgba(255, 255, 255, .0);
-  color: #2f4f4f;
+  color: black;
   margin: 0 0 1rem 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   position: absolute;
 }
+/*CAN ADD IMAGE INSTEAD OF "..."*/
 .actions .options-btn{
   position: absolute;
   top:8px;
   right: 10px;
+  font-weight: 737;
 }
 
 /* Hide by default */
 .actions .delete-btn,
 .actions .edit-btn {
   display: none;
-  position: absolute; /* required for top/right to work */
-  width: 50px;         /* same width */
-  height: 20px;        /* same height */
+  position: absolute; 
+  width: 50px;        
+  height: 20px;        
   font-size: 10px;
   right: 10px;
   z-index: 10;
 }
 
-/* Specific positions */
 .product-card .delete-btn {
   top: 10px;
 }
-
 .product-card .edit-btn {
-  top: 30px; /* slightly lower so it doesn't overlap delete */
+  top: 30px; 
 }
 
 .product-card .edit-btn:hover,
 .product-card .delete-btn:hover {
   cursor: pointer;
-  color: red;
+  border-left: 1px solid currentColor;
   text-align: center;
   cursor: pointer;
 
 }
 
-/* === FORM STYLING (optional, for add.html too) === */
-form {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
 
-.form-group {
-  margin: 1rem 0;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-input, select {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* === BUTTONS (shared) === */
-
-
-
-/* === MODAL / POPUP === */
+/* === Delete Confirmation Pop Up === */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -219,55 +186,51 @@ input, select {
 }
 
 .modal {
-  background: #f9f9f9;
-  padding: 2rem;
+  background: white;
+  padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 400px;
+  max-width: 170px;
   width: 100%;
 }
 
 .modal h2 {
   margin-top: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #2f4f4f;
+  color: black;
 }
 
 .modal p {
-  color: #2f4f4f;
-  font-size: 14px;
+  color: black;
+  font-size: 17px;
+  margin-top: 0;
 }
 
 .modal .modal-actions {
-  margin-top: 1.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .modal .button {
-  padding: 0.6rem 1.2rem;
-  background-color: #007b7f;
-  color: white;
-  font-weight: bold;
+  background-color: rgba(255, 255, 255, .0);
+  color: black;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 11px;
   transition: background-color 0.3s ease;
+  size: 10px;
 }
 
 .modal .button:hover {
-  background-color: #005f61;
+   cursor: pointer;
+  border-bottom: 1px solid currentColor;
+  text-align: center;
+  transform: scale(1.1);
 }
 
 .modal .button.cancel {
-  background-color: #ccc;
-  color: #333;
-}
-
-.modal .button.cancel:hover {
-  background-color: #aaa;
+  background-color: rgba(255, 255, 255, .0);
+  color: black;
 }
 
 /* === UTILITIES === */

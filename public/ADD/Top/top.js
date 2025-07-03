@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <img src="${image}" alt="Top ${idIndex}" />
       </a>
       <p>${name}</p>
-      <p>$ ${price} USD</p>
+      <p>$ ${price}.00</p>
        
       <div class="actions">
         <button class="options-btn">...</button>
