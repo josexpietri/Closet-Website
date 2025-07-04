@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentTopElement = null; // Store the currently hovered "top" item
 
+  const addTab = document.querySelector('nav.tabs-container a[href="/ADD/add.html"]');
+  if (addTab) {
+    // 2) Clear any pending edit, then let the link navigate normally
+    addTab.addEventListener("click", () => {
+      sessionStorage.removeItem("editingItem");
+    });
+  }
+
   const showControls = (actions) => {
     actions.querySelector(".delete-btn").style.display = "inline-block";
     actions.querySelector(".edit-btn").style.display = "inline-block";
@@ -89,21 +97,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
    
 
-  function pushTops(itemData){
+function pushTops(itemData){
     allTops.push(itemData);
     saveTops(allTops);
     updateTops();
-  }
+}
   
-  function updateTops(container, allTops) {
+function updateTops(container, allTops) {
+     if (!container) {
+    // we’re not on the Tops page—do nothing
+    return;
+    }
+
     container.innerHTML = "";
     allTops.forEach((top, index) => {
       const el = createNewTop(top.image, top.name, top.price, top.link, index);
       container.appendChild(el);
     });
-  }
+}
   
-  function createNewTop(image, name, price, link, idIndex) {
+function createNewTop(image, name, price, link, idIndex) {
     const div = document.createElement("div");
     div.className = "product-card";
     div.dataset.id = idIndex; 
@@ -124,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     return div;
-  }
+}
   
 function getTops() {
   const data = localStorage.getItem("allTops");
@@ -136,17 +149,25 @@ function getTops() {
   }
 }
   
-  function saveTops(allTops) {
+function saveTops(allTops) {
     localStorage.setItem("allTops", JSON.stringify(allTops));
-  }
+}
   
-  function editTop(topElement) {
-  const id = topElement.dataset.id;
-  
+function editTop(topElement) {
+  const idx    = parseInt(topElement.dataset.id, 10);
+  const allTops= getTops();
+  const topObj = allTops[idx];
+
+  // Save both index and category so add.js knows what to do
+  sessionStorage.setItem(
+    "editingItem",
+    JSON.stringify({ idx, category: "Top", ...topObj })
+  );
+  window.location.href = "/ADD/add.html";
 }
 
-let pendingDeleteId = null;
 
+let pendingDeleteId = null;
 function deleteTop(topElement) {
   pendingDeleteId = parseInt(topElement.dataset.id);
   document.getElementById("confirmModal").classList.remove("hidden");

@@ -30,7 +30,7 @@ body {
 
 /* Tabs */ 
 
-nav {
+nav.tabs-container {
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -49,7 +49,7 @@ nav {
 }
 
 
-nav a {
+nav.tabs-container a {
   text-decoration: none;
   color: white;
   font-size: 16px;
@@ -57,6 +57,28 @@ nav a {
 
 }
 
-nav a:hover {
+nav.tabs-container a:hover {
   transform: scale(1.1);
+}
+
+nav.addbtn a[href="/ADD/add.html"] {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  border-color: white;
+
+  right: 2rem;
+  top: 2rem;
+  position: absolute;                
+  transform: translateX(-50%); 
+  
+  font-weight: bold;
+  font-size: clamp(18px, 3vw, 25px);      
+  transition: transform 0.2s ease;
+  
+  padding: 0.5rem 1rem;
+}
+nav.addbtn a[href="/ADD/add.html"]:hover {
+  transform: translateX(-50%) scale(1.1);
+  cursor: pointer;
 }

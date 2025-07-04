@@ -1,10 +1,4 @@
 
-fix the add tab 
-	- look 
-	- layout 
-	- make sure input deletes when user clicks enter
-edit button 
-	- takes you to a filled out Add tab 
 set up the rest of the tabs 
 
 Deploy the website with a database
