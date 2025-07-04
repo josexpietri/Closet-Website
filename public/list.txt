@@ -1,3 +1,4 @@
+
 fix the add tab 
 	- look 
 	- layout 
@@ -10,6 +11,7 @@ Deploy the website with a database
 
 
 > upgrades : 
+When User scrolls keep the header tabs on the screen 
 make homepage 
 	> just load all the clothing items and have the page cycle through them 
 make inspect page which adds more images 

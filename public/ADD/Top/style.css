@@ -8,8 +8,7 @@ body {
   margin: 0;
   padding: 0;
 
-  background: url('TopBack.jpg') no-repeat center/cover;
-  background-image: url('TopBack.jpg');
+  background-color:#e3e3e3;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -17,24 +16,34 @@ body {
 }
 /* === HEADER & NAV === */
 header {
-  
-  padding: 1rem 0;
-  text-align: center;
+  padding: 1.5rem;
   position: relative;
 }
 
 nav {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
   flex-wrap: wrap;
+  position: relative;
 }
 
 nav a {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: black;
+}
+
+nav.tabs-container {
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;    /* 1.5rem top/bottom, 2rem left/right */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/*Clothing Options --> Everything but Home and Add*/
+nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]){
+  left: 2rem;
+  margin-left: 30px;
   font-size: 15px;
-  color: white;
 }
 
 nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover {
@@ -46,37 +55,42 @@ nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover
   border-bottom: 2px solid currentColor;
 }
 
-nav.tabs-container a[href="/ADD/add.html"]:last-of-type {
-  position: absolute;
-  top: 50%;
+/* + add button */
+nav.tabs-container a[href="/ADD/add.html"] {
   right: 2rem;
-  transform: translateY(-50%);
+  position: absolute;                
+  transform: translateX(-50%); 
   
   font-weight: bold;
-  font-size: 25px;
+  font-size: 25px;      
+  transition: transform 0.2s ease;
+  
+  padding: 0.5rem 1rem;
 }
 nav.tabs-container a[href="/ADD/add.html"]:hover {
-  transform: translateY(-50%) scale(1.2);
+  transform: translateX(-50%) scale(1.1);
+  cursor: pointer;
 }
 
-/* target the HOME link */
+
+/*LOGIN button */
+
+
+/* Home / Logo button */
 nav.tabs-container a[href="/index.html"] {
-  position: absolute;
-  top: 50%;                   /* vertical center of the header */
-  left: 2rem;                 /* distance from the left edge */
-  transform: translateY(-50%);
+  position: absolute;   
+  left: 50%;             
+  transform: translateX(-50%); 
   
   font-weight: bold;
-  /* match whatever font-size you’re using elsewhere */
-  font-size: 1rem;
+  font-size: 30px;      
   transition: transform 0.2s ease;
-  /* optional: set transform-origin if you’ll scale it */
-  transform-origin: center;
+  
+  padding: 0.5rem 1rem;
 }
-
-/* keep it in place when you hover */
 nav.tabs-container a[href="/index.html"]:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: translateX(-50%) scale(1.1);
+  cursor: pointer;
 }
 
 
@@ -94,10 +108,9 @@ nav.tabs-container a[href="/index.html"]:hover {
 /* === PRODUCT CARD === */
 .product-card {
   background-color: #f9f9f9;
-  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 320px; /* this makes items align horizontally */
+  width: 320px;
   text-align: center;
   transition: transform 0.3s ease;
   position: relative;
