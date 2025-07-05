@@ -1,5 +1,4 @@
 
-set up the rest of the tabs 
 
 Deploy the website with a database
 

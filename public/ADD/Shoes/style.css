@@ -56,7 +56,7 @@ nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover
   transform: scale(1.1);
 }
 
-.tabs-container a[data-page="Bottom"] {
+.tabs-container a[data-page="shoe"] {
   /* your styles here */
   border-bottom: 2px solid currentColor;
 }

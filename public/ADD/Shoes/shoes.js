@@ -1,7 +1,7 @@
-let allBottoms = getBottoms();
-const bottomsContainer = document.getElementById("bottoms-container");
+let allShoes = getShoes();
+const shoesContainer = document.getElementById("shoes-container");
 
-// Wait for DOM, wire up hover/edit/delete UI
+// Wire up hover / edit / delete UI once DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   let currentItem = null;
 
@@ -13,13 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const showControls = actions => {
     actions.querySelector(".delete-btn").style.display = "inline-block";
-    actions.querySelector(".edit-btn").style.display = "inline-block";
+    actions.querySelector(".edit-btn").style.display   = "inline-block";
     actions.querySelector(".options-btn").style.display = "inline-block";
   };
   const hideControls = actions => {
     if (!actions) return;
     actions.querySelector(".delete-btn").style.display = "none";
-    actions.querySelector(".edit-btn").style.display = "none";
+    actions.querySelector(".edit-btn").style.display   = "none";
     actions.querySelector(".options-btn").style.display = "inline-block";
   };
   const hideOptions = actions => {
@@ -32,13 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = actions.closest(".product-card");
     if (card) currentItem = card;
 
-    if (e.target.classList.contains("options-btn") ||
-        e.target.classList.contains("edit-btn") ||
-        e.target.classList.contains("delete-btn")) {
+    if (
+      e.target.classList.contains("options-btn") ||
+      e.target.classList.contains("edit-btn")    ||
+      e.target.classList.contains("delete-btn")
+    ) {
       showControls(actions);
     }
-    if (e.target.classList.contains("edit-btn") ||
-        e.target.classList.contains("delete-btn")) {
+    if (
+      e.target.classList.contains("edit-btn")    ||
+      e.target.classList.contains("delete-btn")
+    ) {
       hideOptions(actions);
     }
   });
@@ -48,51 +52,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const related = e.relatedTarget;
     if (!actions || !related || !actions.contains(related)) {
       hideControls(actions);
-    } else if (e.target.classList.contains("edit-btn") ||
-               e.target.classList.contains("delete-btn")) {
+    } else if (
+      e.target.classList.contains("edit-btn")    ||
+      e.target.classList.contains("delete-btn")
+    ) {
       actions.querySelector(".options-btn").style.display = "inline-block";
     }
   });
 
   document.body.addEventListener("click", e => {
     if (e.target.classList.contains("edit-btn") && currentItem) {
-      editBottom(currentItem);
+      editShoe(currentItem);
     } else if (e.target.classList.contains("delete-btn") && currentItem) {
-      deleteBottom(currentItem);
+      deleteShoe(currentItem);
     }
   });
 });
 
 // Initial render
-if (bottomsContainer) {
-  updateBottoms(bottomsContainer, allBottoms);
+if (shoesContainer) {
+  updateShoes(shoesContainer, allShoes);
 }
 
-// Add & save a new bottom
-function pushBottoms(itemData) {
-  allBottoms.push(itemData);
-  saveBottoms(allBottoms);
-  updateBottoms(bottomsContainer, allBottoms);
+// Called from add.js when you save a new shoe
+function pushShoes(itemData) {
+  allShoes.push(itemData);
+  saveShoes(allShoes);
+  updateShoes(shoesContainer, allShoes);
 }
 
-// Render list
-function updateBottoms(container, list) {
+// Render the grid
+function updateShoes(container, list) {
   if (!container) return;
   container.innerHTML = "";
   list.forEach((item, idx) => {
     container.appendChild(
-      createBottomCard(item.image, item.name, item.price, item.link, idx)
+      createShoeCard(item.image, item.name, item.price, item.link, idx)
     );
   });
 }
 
-function createBottomCard(image, name, price, link, idx) {
+function createShoeCard(image, name, price, link, idx) {
   const div = document.createElement("div");
   div.className = "product-card";
   div.dataset.id = idx;
   div.innerHTML = `
     <a href="${link}" target="_blank">
-      <img src="${image}" alt="Bottom ${idx}" />
+      <img src="${image}" alt="Shoe ${idx}" />
     </a>
     <p>${name}</p>
     <p>$ ${price}.00</p>
@@ -105,32 +111,32 @@ function createBottomCard(image, name, price, link, idx) {
   return div;
 }
 
-// **Key fix:** use the same localStorage key as add.js does!
-function getBottoms() {
-  const data = localStorage.getItem("allBottoms");
+// 🔑 use the same key that your add.js writes to
+function getShoes() {
+  const data = localStorage.getItem("allShoes");
   if (!data || data === "undefined") return [];
   try { return JSON.parse(data); }
   catch { return []; }
 }
 
-function saveBottoms(list) {
-  localStorage.setItem("allBottoms", JSON.stringify(list));
+function saveShoes(list) {
+  localStorage.setItem("allShoes", JSON.stringify(list));
 }
 
 // Edit
-function editBottom(cardEl) {
-  const idx = +cardEl.dataset.id;
-  const bottoms = getBottoms();
-  const obj = bottoms[idx];
+function editShoe(cardEl) {
+  const idx    = +cardEl.dataset.id;
+  const shoes  = getShoes();
+  const obj    = shoes[idx];
   sessionStorage.setItem(
     "editingItem",
-    JSON.stringify({ idx, category: "Bottom", ...obj })
+    JSON.stringify({ idx, category: "Shoe", ...obj })
   );
   window.location.href = "/ADD/add.html";
 }
 
 // Delete w/ confirmation
-function deleteBottom(cardEl) {
+function deleteShoe(cardEl) {
   pendingDeleteId = +cardEl.dataset.id;
   document.getElementById("confirmModal").classList.remove("hidden");
 }
@@ -140,8 +146,8 @@ function closeModal() {
 }
 function confirmDelete() {
   if (pendingDeleteId === null) return;
-  allBottoms = allBottoms.filter((_, i) => i !== pendingDeleteId);
-  saveBottoms(allBottoms);
-  updateBottoms(bottomsContainer, allBottoms);
+  allShoes = allShoes.filter((_, i) => i !== pendingDeleteId);
+  saveShoes(allShoes);
+  updateShoes(shoesContainer, allShoes);
   closeModal();
 }

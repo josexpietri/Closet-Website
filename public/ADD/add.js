@@ -18,14 +18,18 @@ function getBottoms() { return getArray("allBottoms"); }
 function saveBottoms(a){ saveArray("allBottoms", a); }
 function getShoes()   { return getArray("allShoes"); }
 function saveShoes(a){ saveArray("allShoes", a); }
+function getAcc() {return getArray("allAcc");}
+function saveAcc(a){ saveArray("allAcc", a);}
 
 
 // REDIRECT TARGETS -->> ADD all the other tabs that we can add to 
 const redirectMap = {
   Top:    "/ADD/Top/index.html",
   Bottom: "/ADD/Bottom/index.html",
-  Shoe:   "/ADD/Shoes+/index.html"
+  Shoe:   "/ADD/Shoes/index.html",
+  Accessory: "/ADD/Accessories/index.html"
 };
+
 
 
 
@@ -101,6 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
         case "Shoe":
           overwrite("allShoes", saveShoes);
           break;
+        case "Accessory":
+          overwrite("allAcc", saveAcc);
+          break;
       }
       sessionStorage.removeItem("editingItem");
 
@@ -115,6 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         case "Shoe":
           push("allShoes", saveShoes);
+          break;
+        case "Accessory":
+          push("allAcc", saveAcc);
           break;
       }
     }
