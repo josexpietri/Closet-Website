@@ -43,7 +43,7 @@ nav.tabs-container {
 
   position: absolute;
   text-align: center;
-  bottom: 317px;
+  bottom: 40%;
 
 
 }
@@ -61,7 +61,14 @@ nav.tabs-container a:hover {
   transform: scale(1.1);
 }
 
-nav.addbtn a[href="/ADD/add.html"] {
+/* ------------- LINKS -------------------- */
+
+ /*        "/" == "/index.html" == Home                       */
+ /*       "/add/add" == "/ADD/add.html" == Add Page           */
+
+ /* -----------------------------------------*/
+ 
+nav.addbtn a[href="/add/add"] {
   text-decoration: none;
   color: white;
   font-size: 16px;
@@ -78,7 +85,7 @@ nav.addbtn a[href="/ADD/add.html"] {
   
   padding: 0.5rem 1rem;
 }
-nav.addbtn a[href="/ADD/add.html"]:hover {
+nav.addbtn a[href="/add/add"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }

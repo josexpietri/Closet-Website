@@ -14,12 +14,16 @@ body {
   background-size: cover;
   background-attachment: fixed; 
 }
-/* === HEADER & NAV === */
+
+
+/* === HEADER  === */
+
 header {
   padding: 1.5rem;
   position: relative;
 }
 
+/* Tab Buttons ->> Tops Bottoms ...       CLOSET          login + <<-- */
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -34,30 +38,39 @@ nav a {
 nav.tabs-container {
   display: flex;
   align-items: center;
-  padding-top: 1.5rem;    /* 1.5rem top/bottom, 2rem left/right */
+  padding-top: 1.5rem;    
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
+/* ------------- LINKS -------------------- */
+
+ /*        "/" == "/index.html" == Home                       */
+ /*       "/add/add" == "/ADD/add.html" == Add Page           */
+
+ /* -----------------------------------------*/
+
+ 
 /*Clothing Options --> Everything but Home and Add*/
-nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]){
+
+nav.tabs-container a:not([href="/"]):not([href="/add/add"]){
   left: 2rem;
   margin-left: 30px;
   font-size: clamp(12px, 1.5vw, 15px);
 }
 
 @media (max-width: 900px) {
-  nav.tabs-container a:not([href="/index.html"]) {
+  nav.tabs-container a:not([href="/"]) {
     display: none;
   }
 }
 
-nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover {
+nav.tabs-container a:not([href="/"]):not([href="/add/add"]):hover {
   transform: scale(1.1);
 }
 
 /* + add button */
-nav.tabs-container a[href="/ADD/add.html"] {
+nav.tabs-container a[href="/add/add"] {
   right: 2rem;
   position: absolute;                
   transform: translateX(-50%); 
@@ -70,7 +83,7 @@ nav.tabs-container a[href="/ADD/add.html"] {
 
   border-bottom: 2px solid currentColor;
 }
-nav.tabs-container a[href="/ADD/add.html"]:hover {
+nav.tabs-container a[href="/add/add"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }
@@ -80,7 +93,7 @@ nav.tabs-container a[href="/ADD/add.html"]:hover {
 
 
 /* Home / Logo button */
-nav.tabs-container a[href="/index.html"] {
+nav.tabs-container a[href="/"] {
   position: absolute;   
   left: 50%;             
   transform: translateX(-50%); 
@@ -91,7 +104,7 @@ nav.tabs-container a[href="/index.html"] {
   
   padding: 0.5rem 1rem;
 }
-nav.tabs-container a[href="/index.html"]:hover {
+nav.tabs-container a[href="/"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }
@@ -142,3 +155,4 @@ button:hover {
   transform: translateX(-50%) scale(1.5);
   cursor: pointer;
 }
+
