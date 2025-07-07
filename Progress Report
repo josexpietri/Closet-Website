@@ -1,1 +1,8 @@
-Deploying it. Then figuring out how to set-up user accounts with sign ups and log ins. Launching it to users. Continue to improve it. 
+Deployed it : https://super-haupia-c1f121.netlify.app/
+
+Had to move some hrefs to match the deployment links, mainly with the header tabs and CSS. 
+The deployed version looks a little more zoomed in than the live host. 
+
+Going to continue to add features and create a database to deploy it for user use. 
+
+Currently working on user Log in and Sign up with respective databases. 
