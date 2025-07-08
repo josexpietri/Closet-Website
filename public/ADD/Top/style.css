@@ -105,9 +105,15 @@ nav.tabs-container a[href="/"] {
   transition: transform 0.2s ease;
   
   padding: 0.5rem 1rem;
+
+  padding: 0;
+}
+nav.tabs-container a[href="/"] .logo {
+  display: block;         /* so margin/padding behave predictably */
+  height: 8.5rem;         
+  width: auto;
 }
 nav.tabs-container a[href="/"]:hover {
- 
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }

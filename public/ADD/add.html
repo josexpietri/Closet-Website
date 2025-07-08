@@ -10,7 +10,11 @@
 <body>
   <header>
     <nav class="tabs-container">
-      <a href="/index.html" data-page="home">CLOSET</a>
+
+      <a href="/index.html" data-page="home">
+        <img src="logoB.png" alt="Site Logo" class="logo">
+      </a>
+
       <a href="/ADD/Top/index.html" data-page="Tops">Tops</a>
       <a href="/ADD/Bottom/index.html" data-page="Bottom">Bottoms</a>
       <a href="/ADD/Shoes/index.html" data-page="shoe">Shoes</a>
@@ -29,7 +33,7 @@
 
   <div class="form-group">
     <label for="itemPrice">Price</label>
-    <input type="number" id="itemPrice" required />
+    <input type="text" id="itemPrice" required />
   </div>
 
   <div class="form-group">
@@ -45,7 +49,7 @@
   <div class="form-group">
     <label for="itemCategory">Category</label>
     <select id="itemCategory" required>
-      <option value="">Select Category</option>
+      <option value="S">Select Category</option>
       <option value="Top">Top</option>
       <option value="Bottom">Bottom</option>
       <option value="Shoe">Shoe</option>

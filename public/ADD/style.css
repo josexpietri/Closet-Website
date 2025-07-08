@@ -8,6 +8,8 @@ body {
   margin: 0;
   padding: 0;
 
+  
+
   background-color:#e3e3e3;
   background-repeat: no-repeat;
   background-position: center center;
@@ -104,6 +106,11 @@ nav.tabs-container a[href="/"] {
   
   padding: 0.5rem 1rem;
 }
+nav.tabs-container a[href="/"] .logo {
+  display: block;         /* so margin/padding behave predictably */
+  height: 8.5rem;         
+  width: auto;
+}
 nav.tabs-container a[href="/"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
@@ -115,11 +122,10 @@ form {
   max-width: 500px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background-color:#e3e3e3;
 }
-
-.form-group {
-  margin: 1rem 0;
+.form-group label {
+  color: black;   
+  margin: 1rem 0; 
 }
 
 label {
@@ -131,8 +137,9 @@ input, select {
   width: 100%;
   box-sizing: border-box;
   padding: 0.6rem;      
-  border: 1px solid #000; 
-  background-color: #e3e3e3;
+  border: 1px solid black; 
+  background-color: rgba(255, 255, 255, .0);
+  color: black;
 } 
 
 
@@ -142,8 +149,9 @@ button {
   color: black;
   font-size: 30px;
   border: none;
-  background-color:#e3e3e3;
   left: 50%;
+
+  background-color: rgba(255, 255, 255, .0);
 
   position: absolute;                
   transform: translateX(-50%); 
@@ -156,3 +164,26 @@ button:hover {
   cursor: pointer;
 }
 
+/* ====== CATEGORIES =========== */
+
+.form-group select {
+  color: black;            
+  border: 1px solid black; 
+}
+.form-group select:hover {
+  cursor: pointer;
+}
+.form-group select option {  
+  background-color: white;  
+  color: black;             
+}
+.form-group select option:hover{
+  cursor: pointer;
+}
+.form-group select option:checked {
+  color: black;           
+}
+.form-group select:focus {
+  outline: none;
+  color: black;
+}

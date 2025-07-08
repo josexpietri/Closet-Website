@@ -107,6 +107,11 @@ nav.tabs-container a[href="/"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }
+nav.tabs-container a[href="/"] .logo {
+  display: block;         /* so margin/padding behave predictably */
+  height: 8.5rem;         
+  width: auto;
+}
 
 
 

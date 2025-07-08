@@ -164,6 +164,8 @@ function editTop(topElement) {
     JSON.stringify({ idx, category: "Top", ...topObj })
   );
   window.location.href = "/ADD/add.html";
+
+  
 }
 
 

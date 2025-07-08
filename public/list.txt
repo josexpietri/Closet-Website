@@ -1,7 +1,8 @@
 
 
-Deploy the website with a database
-
+Deploy the website with different way 
+check looks 
+fix up the looks 
 
 > upgrades : 
 When User scrolls keep the header tabs on the screen 
