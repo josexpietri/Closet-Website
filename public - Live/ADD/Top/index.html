@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tops</title>
+    <link rel="icon" href="Tab3.png" />
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+
+    
+      <header>
+    <nav class="tabs-container">
+
+      <a href="/index.html" data-page="home">
+        <img src="logoB.png" alt="Site Logo" class="logo">
+      </a>
+
+      <a href="/ADD/Top/index.html" data-page="Tops">Tops</a>
+      <a href="/ADD/Bottom/index.html" data-page="Bottom">Bottoms</a>
+      <a href="/ADD/Shoes/index.html" data-page="shoe">Shoes</a>
+      <a href="/ADD/Accessories/index.html" data-page="acc">Accessories</a>
+      
+      <a href="/ADD/add.html" data-page="add">+</a>
+
+    </nav>
+  </header>
+
+  <section class = "items-grid" id="tops-container"></section>
+
+  <div class="modal-overlay hidden" id="confirmModal">
+  <div class="modal">
+    <p>Confirm</p>
+    <div class="modal-actions">
+      <button class="button cancel" onclick="closeModal()">Cancel</button>
+      <button class="button" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+  </div>
+
+
+  <script src="top.js"></script>
+</body>
+</html>
+

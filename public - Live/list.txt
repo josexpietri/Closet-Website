@@ -1,0 +1,22 @@
+
+
+Deploy the website with different way 
+check looks 
+fix up the looks 
+
+> upgrades : 
+When User scrolls keep the header tabs on the screen 
+make homepage 
+	> just load all the clothing items and have the page cycle through them 
+make inspect page which adds more images 
+	> includes a delete and edit feature 
+make users 
+make the add page universal 
+split up the categories more 
+	> accessories
+	> outerwear
+	> shorts
+add a closet 
+	> users can enter outfit inspo 
+
+
