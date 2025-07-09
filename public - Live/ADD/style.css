@@ -1,31 +1,24 @@
 /* === GLOBAL STYLES === */
 body {
   font-family: 'Scto Grotesk A';
-  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-
   margin: 0;
   padding: 0;
-
-  
-
-  background-color:#e3e3e3;
+  background-color: #e3e3e3;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
 }
 
-
-/* === HEADER  === */
-
+/* === HEADER === */
 header {
   padding: 1.5rem;
   position: relative;
 }
 
-/* Tab Buttons ->> Tops Bottoms ...       CLOSET          login + <<-- */
+/* Tab Buttons */
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -40,23 +33,13 @@ nav a {
 nav.tabs-container {
   display: flex;
   align-items: center;
-  padding-top: 1.5rem;    
+  padding-top: 1.5rem;
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-/* ------------- LINKS -------------------- */
-
- /*        "/" == "/index.html" == Home                       */
- /*       "/add/add" == "/ADD/add.html" == Add Page           */
-
- /* -----------------------------------------*/
-
- 
-/*Clothing Options --> Everything but Home and Add*/
-
-nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]){
-  left: 2rem;
+/* Clothing Options */
+nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]) {
   margin-left: 30px;
   font-size: clamp(12px, 1.5vw, 15px);
 }
@@ -71,91 +54,88 @@ nav.tabs-container a:not([href="/index.html"]):not([href="/ADD/add.html"]):hover
   transform: scale(1.1);
 }
 
-/* + add button */
+/* Add Button */
 nav.tabs-container a[href="/ADD/add.html"] {
+  position: absolute;
   right: 2rem;
-  position: absolute;                
-  transform: translateX(-50%); 
-  
+  transform: translateX(-50%);
   font-weight: bold;
-   font-size: clamp(18px, 3vw, 25px);      
+  font-size: clamp(18px, 3vw, 25px);
   transition: transform 0.2s ease;
-  
   padding: 0.5rem 1rem;
-
   border-bottom: 2px solid currentColor;
 }
+
 nav.tabs-container a[href="/ADD/add.html"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }
 
-
-/*LOGIN button */
-
-
-/* Home / Logo button */
+/* Home Logo */
 nav.tabs-container a[href="/index.html"] {
-  position: absolute;   
-  left: 50%;             
-  transform: translateX(-50%); 
-  
-  font-weight: bold;
-  font-size: clamp(20px, 4vw, 30px);      
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   transition: transform 0.2s ease;
-  
   padding: 0.5rem 1rem;
 }
+
 nav.tabs-container a[href="/index.html"] .logo {
-  display: block;         /* so margin/padding behave predictably */
-  height: 8.5rem;         
+  display: block;
+  height: 8.5rem;
   width: auto;
 }
+
 nav.tabs-container a[href="/index.html"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
 }
 
-
-/* ADD Form  */
+/* ADD Form */
 form {
   max-width: 500px;
   margin: 2rem auto;
   padding: 1.5rem;
+  position: relative;
+  font-size: 14px;
 }
+
 .form-group label {
-  color: black;   
-  margin: 1rem 0; 
+  color: black;
+  margin: 1rem 0;
 }
 
 label {
   display: block;
   margin-bottom: 0.5rem;
 }
-input, select {
+
+input,
+select {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding: 0.6rem;      
-  border: 1px solid black; 
-  background-color: rgba(255, 255, 255, .0);
+  padding: 0.51rem;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0);
   color: black;
-} 
+}
 
+input:focus,
+select:focus {
+  outline: none;
+}
 
 button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 1rem 0;
   padding: 0.6rem 1.2rem;
   color: black;
-  font-size: 30px;
   border: none;
-  left: 50%;
-
-  background-color: rgba(255, 255, 255, .0);
-
-  position: absolute;                
-  transform: translateX(-50%); 
-  font-size: clamp(18px, 3vw, 25px);      
+  background-color: rgba(255, 255, 255, 0);
+  font-size: clamp(18px, 3vw, 25px);
   transition: transform 0.2s ease;
 }
 
@@ -164,26 +144,27 @@ button:hover {
   cursor: pointer;
 }
 
-/* ====== CATEGORIES =========== */
-
+/* Categories */
 .form-group select {
-  color: black;            
-  border: 1px solid black; 
+  color: black;
+  border: 1px solid black;
 }
-.form-group select:hover {
-  cursor: pointer;
-}
-.form-group select option {  
-  background-color: white;  
-  color: black;             
-}
-.form-group select option:hover{
-  cursor: pointer;
-}
-.form-group select option:checked {
-  color: black;           
-}
+
+.form-group select:hover,
 .form-group select:focus {
+  cursor: pointer;
   outline: none;
+}
+
+.form-group select option {
+  background-color: white;
+  color: black;
+}
+
+.form-group select option:hover {
+  cursor: pointer;
+}
+
+.form-group select option:checked {
   color: black;
 }

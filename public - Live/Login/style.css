@@ -1,0 +1,128 @@
+/* style.css — add these at the bottom or in your login section */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Scto Grotesk A';
+  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+
+  margin: 0;
+  padding: 0;
+
+display: flex;
+  justify-content: center;   
+  min-height: 100vh;       /* ensure at least full viewport height */
+
+  background-color:#e3e3e3;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; 
+}
+
+.logo {
+  display: block;         /* so margin/padding behave predictably */
+  height: 15rem;         
+  width: auto;
+}
+
+/* Container sits beneath the logo */
+.container { 
+  
+  max-width: 37%;
+  background: none;
+}
+
+
+/* Stack labels and inputs */
+.item-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  width: 100%;
+}
+
+/* Space out form fields */
+.item-form label {
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.item-form input {
+  margin-top: 5px;
+  padding: 7px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Scto Grotesk A';
+  font-size: 12px;
+}
+.item-form input:focus {
+  outline: none;
+}
+
+/* Style the submit button (leveraging your existing .btn class) */
+.btn {
+  display: block;            /* make it a block so auto-margins work */
+  margin: 20px auto 0;       /* 20px top, auto left/right, 0 bottom */
+  padding: 12px;
+  font-size: clamp(18px, 3vw, 25px);
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+
+#loginForm .btn {
+  font-family: 'Scto Grotesk A';
+  font-size: 15px;      
+  padding: 0.6em 1.2em;   
+}
+
+
+/* keep the wrapper size-wise identical to your input */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  
+  
+}
+
+/* full-width input, with right-padding so text never hits the button */
+.password-wrapper input {
+  width: 100%;
+  padding-right: 4em; /* adjust if you tweak the button’s width */
+}
+
+/* style & position the toggle button */
+#togglePassword {
+  font-family: 'Scto Grotesk A';
+
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;  
+  cursor: pointer;
+   
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: black;              /* or whatever text-color you prefer */
+}
+
+/* optional hover state */
+#togglePassword:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="Tab4.png" />
+</head>
+<body>
+  <div class="container">
+    <img src="logoB.png" alt="Site Logo" class="logo">
+    <form id="loginForm" class="item-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password:</label>
+<div class="password-wrapper">
+  <input
+    type="password"
+    id="password"
+    name="password"
+    required
+  />
+  <button
+    type="button"
+    id="togglePassword"
+    aria-label="Show password"
+  >show password</button>
+</div>
+
+      <button type="submit" class="btn">log in</button>
+    </form>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

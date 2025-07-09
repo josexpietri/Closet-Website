@@ -1,11 +1,14 @@
 /* reset & base */
-* { margin:0; padding:0; box-sizing:border-box; }
-body {  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Scto Grotesk A';
-  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-
   position: relative;
   width: 100%;
   height: 100vh;
@@ -13,79 +16,127 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
- }
+}
 
-
+/*Logo */
 .logo {
   text-align: center;
 }
 
 .logo img {
-  /* change these numbers to whatever fits your design */
   width: clamp(650px, 25vw, 900px);
   height: auto;
   display: block;
 }
 
-
-/* Tabs */ 
-
+/* Clothing Options */
 nav.tabs-container {
   display: flex;
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-
-  font-family: 'Scto Grotesk A';
-  src: url('fonts/SctoGroteskA-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-
   position: absolute;
   text-align: center;
   bottom: 40%;
-
-
 }
-
 
 nav.tabs-container a {
   text-decoration: none;
   color: white;
   font-size: 16px;
-  border-color: white;
-
 }
 
 nav.tabs-container a:hover {
   transform: scale(1.1);
 }
 
-/* ------------- LINKS -------------------- */
-
- /*        "/" == "/index.html" == Home                       */
- /*       "/add/add" == "/ADD/add.html" == Add Page           */
-
- /* -----------------------------------------*/
- 
+/* Add Button [TOP RIGHT] */
+nav.addbtn {
+  position: absolute;
+  top: 3%;
+  right: 2rem;
+  /* remove translateX here if you want it flush at 2rem from the right edge */
+}
 nav.addbtn a[href="/ADD/add.html"] {
   text-decoration: none;
   color: white;
-  font-size: 16px;
-  border-color: white;
-
-  right: 2rem;
-  top: 2rem;
-  position: absolute;                
-  transform: translateX(-50%); 
-  
+  transform: translateX(-50%);
   font-weight: bold;
-  font-size: clamp(18px, 3vw, 25px);      
+  font-size: clamp(18px, 3vw, 25px);
   transition: transform 0.2s ease;
-  
   padding: 0.5rem 1rem;
+
+  position: relative;      /* so scale stays centered on the link */
+  display: inline-block;   /* shrink‐wrap to its text+padding */
 }
-nav.addbtn a[href="/add/add"]:hover {
+nav.addbtn a[href="/ADD/add.html"]:hover {
   transform: translateX(-50%) scale(1.1);
   cursor: pointer;
+}
+nav.signoutbtn {
+  position: absolute;
+  top: 8%;
+  right: 2.1rem;
+  /* remove translateX here if you want it flush at 2.1rem from the right edge */
+}
+
+nav.signoutbtn a[href="/Login/index.html"] {
+  text-decoration: none;
+  color: white;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: clamp(18px, 3vw, 25px);
+  transition: transform 0.2s ease;
+  padding: 0.5rem 1rem;
+
+   position: relative;      /* so scale stays centered on the link */
+  display: inline-block;   /* shrink‐wrap to its text+padding */
+}
+
+nav.signoutbtn a[href="/Login/index.html"]:hover {
+  transform: translateX(-50%) scale(1.1);
+  cursor: pointer;
+
+  
+}
+
+nav.addbtn .popup {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;                         /* vertical center */
+  right: calc(92% + 40px);         /* sit just to the left, with 8px gap */
+  transform: translateY(-50%);      /* adjust for top:50% */
+  white-space: nowrap;              /* no wrapping */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-family: 'Scto Grotesk A';
+  font-weight: lighter;
+  color: white;
+  font-size: 12px;
+}
+
+nav.addbtn:hover .popup {
+  visibility: visible;
+  opacity: .73;
+
+}
+nav.signoutbtn .popup2{
+  visibility: hidden;
+  position: absolute;
+  top: 41%;                         /* vertical center */
+  right: calc(92% + 5px);         /* sit just to the left, with 8px gap */
+  transform: translateY(-50%);      /* adjust for top:50% */
+  white-space: nowrap;              /* no wrapping */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-family: 'Scto Grotesk A';
+  font-weight: lighter;
+  color: white;
+  font-size: 12px;
+}
+
+nav.signoutbtn:hover .popup2 {
+  visibility: visible;
+  opacity: .73;
+
 }
